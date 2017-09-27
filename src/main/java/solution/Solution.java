@@ -4,12 +4,15 @@ import java.io.BufferedReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/* to begin from scratch you have to remove the class CaseGame And the code below*/
+/*  your function compute return just 0 in the beginning */
 public class Solution {
 
 
     private static final int INIT_GAME = 0;
 
     public static int compute(BufferedReader br) {
+
         final List<String> gameSteps = br.lines ( ).collect (Collectors.toList ( ));
         CaseGame caseGame = new CaseGame (gameSteps);
         return calculateGame (caseGame, caseGame.getStartCase ( ), INIT_GAME);
