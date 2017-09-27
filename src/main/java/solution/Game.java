@@ -43,7 +43,7 @@ public class Game {
 
     public boolean isDiceCaseElement(int element) {
         final String gameCase = getGameCases ( ).get (element);
-        return gameCase.equals (DICE) || gameCase.equals (START);
+        return DICE.equals (gameCase) || START.equals (gameCase);
     }
 
     public int updateAndGetMinGame(int game) {
