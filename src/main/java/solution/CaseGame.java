@@ -52,7 +52,7 @@ class CaseGame {
         return minGame.get ( );
     }
 
-    public boolean endGame(int caseElement) {
+    public boolean finishGame(int caseElement) {
         return caseElement == endCase;
     }
 
