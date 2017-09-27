@@ -1,0 +1,5 @@
+/* to begin from scratch you have to remove the class CaseGame And the code below*/
+/*  your function compute return just 0 in the beginning */
+ public static int compute(BufferedReader br) {
+     return 0
+ }
