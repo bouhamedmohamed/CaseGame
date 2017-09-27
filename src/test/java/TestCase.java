@@ -1,6 +1,6 @@
 class TestCase {
-    private String testCaseFilepath;
-    private int result;
+    private final String testCaseFilepath;
+    private final int result;
 
     public TestCase(String testCaseFilepath, int result) {
         this.testCaseFilepath = testCaseFilepath;

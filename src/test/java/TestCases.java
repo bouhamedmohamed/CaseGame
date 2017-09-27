@@ -5,10 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class TestCases {
-    static HashMap<Integer, TestCase> testCaseHashMap = new HashMap<Integer, TestCase> ( );
-    final static String testCaseFilePath = ".\\test cases\\input-case";
-    public static final int IMPOSSIBLE = -1;
+class TestCases {
+    private static final HashMap<Integer, TestCase> testCaseHashMap = new HashMap<> ( );
+    private final static String testCaseFilePath = ".\\test cases\\input-case";
+    private static final int IMPOSSIBLE = -1;
 
 
     static {

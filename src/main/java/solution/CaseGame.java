@@ -6,22 +6,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Game {
-    public static final String END = "E";
-    public static final String START = "S";
-    public static final String DICE = "R";
-    public static final int INIT_VALUE = -1;
-    private int startCase;
-    private int endCase;
-    private List<String> gameCases;
-    static Map<Integer, Integer> visitedCase;
-    public static AtomicInteger minGame;
+class CaseGame {
+    private static final String END = "E";
+    private static final String START = "S";
+    private static final String DICE = "R";
+    private static final int INIT_VALUE = -1;
+    private final int startCase;
+    private final int endCase;
+    private final List<String> gameCases;
+    private static Map<Integer, Integer> visitedCase;
+    private static AtomicInteger minGame;
 
-    public Game(List<String> gameSteps) {
+    public CaseGame(List<String> gameSteps) {
         this.gameCases = gameSteps;
         startCase = findPosition (START);
         endCase = findPosition (END);
-        visitedCase = new HashMap<Integer, Integer> ( );
+        visitedCase = new HashMap<> ( );
         minGame = new AtomicInteger (-1);
 
     }
@@ -30,7 +30,7 @@ public class Game {
         return startCase;
     }
 
-    public List<String> getGameCases() {
+    private List<String> getGameCases() {
         return Collections.unmodifiableList (gameCases);
     }
 
@@ -63,6 +63,10 @@ public class Game {
 
     }
 
+    public int gameOver() {
+        return minGame.get ( );
+    }
+
     private boolean notInRangeGame(int caseElement) {
         return !(caseElement >= 0 && caseElement < getGameCases ( ).size ( ));
     }
@@ -79,17 +83,15 @@ public class Game {
 
     private boolean isAlreadyVisitTheCase(int caseElement, int gameNumber) {
         Integer value = visitedCase.get (caseElement);
-        if ( value == null || ((value != null) && (value > gameNumber)) ) {
+        if ( value == null || value > gameNumber ) {
             visitedCase.put (caseElement, gameNumber);
             return false;
         }
         return true;
-
     }
 
     private boolean overMinGame(int game) {
         final int minGameValue = minGame.get ( );
         return game > minGameValue && minGameValue != INIT_VALUE;
     }
-
 }
