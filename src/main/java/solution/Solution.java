@@ -21,9 +21,9 @@ public class Solution {
 
     private static int calculateGame(CaseGame caseGame, int startCaseElement, int gameIteration) {
         if ( caseGame.finishGame (startCaseElement) )
-            return caseGame.updateAndGetMinGame (gameIteration);
-        if ( caseGame.isGameOver (startCaseElement, gameIteration) )
-            return caseGame.gameOver ( );
+            return caseGame.goodPath(gameIteration);
+        if ( caseGame.isGameOver(startCaseElement, gameIteration) )
+            return caseGame.gameIsOver( );
         if ( caseGame.isDiceCaseElement (startCaseElement) ) {
             calculateGame (caseGame, startCaseElement + 6, gameIteration + 1);
             calculateGame (caseGame, startCaseElement + 5, gameIteration + 1);
@@ -32,8 +32,8 @@ public class Solution {
             calculateGame (caseGame, startCaseElement + 2, gameIteration + 1);
             calculateGame (caseGame, startCaseElement + 1, gameIteration + 1);
         } else
-            calculateGame (caseGame, caseGame.updatePosition (startCaseElement), gameIteration + 1);
-        return caseGame.gameOver ( );
+            calculateGame (caseGame, caseGame.next(startCaseElement), gameIteration + 1);
+        return caseGame.gameIsOver( );
     }
 
 }

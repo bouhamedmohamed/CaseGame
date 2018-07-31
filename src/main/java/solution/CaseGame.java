@@ -30,23 +30,23 @@ class CaseGame {
         return startCase;
     }
 
-    private List<String> getGameCases() {
+    private List<String> getPath() {
         return Collections.unmodifiableList (gameCases);
     }
 
-    public int updatePosition(int caseElement) {
-        final int newPosition = caseElement + Integer.parseInt (getGameCases ( ).get (caseElement));
+    public int next(int caseElement) {
+        final int newPosition = caseElement + Integer.parseInt (getPath( ).get (caseElement));
         if ( notInRangeGame (newPosition) )
             return getStartCase ( );
         return newPosition;
     }
 
     public boolean isDiceCaseElement(int element) {
-        final String gameCase = getGameCases ( ).get (element);
+        final String gameCase = getPath( ).get (element);
         return DICE.equals (gameCase) || START.equals (gameCase);
     }
 
-    public int updateAndGetMinGame(int game) {
+    public int goodPath(int game) {
         if ( game < minGame.get ( ) || minGame.get ( ) == INIT_VALUE )
             minGame.set (game);
         return minGame.get ( );
@@ -57,23 +57,23 @@ class CaseGame {
     }
 
     public boolean isGameOver(int caseElement, int gameNumber) {
-        return overMinGame (gameNumber) ||
+        return uselessPath(gameNumber) ||
                 notInRangeGame (caseElement) ||
                 isAlreadyVisitTheCase (caseElement, gameNumber);
 
     }
 
-    public int gameOver() {
+    public int gameIsOver() {
         return minGame.get ( );
     }
 
     private boolean notInRangeGame(int caseElement) {
-        return !(caseElement >= 0 && caseElement < getGameCases ( ).size ( ));
+        return !(caseElement >= 0 && caseElement < getPath( ).size ( ));
     }
 
     private int findPosition(String caseElementToFind) {
         int position = 0;
-        for (String gameStep : getGameCases ( )) {
+        for (String gameStep : getPath( )) {
             if ( gameStep.equals (caseElementToFind) )
                 return position;
             position++;
@@ -90,7 +90,7 @@ class CaseGame {
         return true;
     }
 
-    private boolean overMinGame(int game) {
+    private boolean uselessPath(int game) {
         final int minGameValue = minGame.get ( );
         return game > minGameValue && minGameValue != INIT_VALUE;
     }
